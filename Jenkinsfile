@@ -29,7 +29,7 @@ stage ('Build Source SDK 2013') {
 			stage('Compile on Linux') {
 				sh "if [ -d ${GameBinFolder} ]; then echo \"Dir already exists...\"; else mkdir -p ${GameBinFolder}; fi"
 
-				dir ('sp/src') {
+				dir (SrcPath) {
 					sh "/valve/steam-runtime/shell.sh --arch=i386 make -f ${SolutionName}.mak"
 				}
 			}
@@ -55,7 +55,7 @@ stage ('Build Source SDK 2013') {
 			stage('Compile on Windows') {
 				bat "if not exist ${GameBinFolder} (mkdir ${GameBinFolder})"
 				
-				dir ('sp/src') {
+				dir (SrcPath) {
 					bat """call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\Tools\\VsDevCmd.bat"
 					msbuild ${SolutionName}.sln /t:Build /p:Configuration=Release /m:4"""
 				}
