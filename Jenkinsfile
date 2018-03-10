@@ -5,6 +5,14 @@ def GameBinFolder = "sp/game/episodic/bin"
 def VPCScript = "creategameprojects"
 def SolutionName = "games"
 
+// Q: What is sln_fix.txt?
+// Well VPC is broken and to make this file you need to:
+// Create your .sln
+// Copy it to like blah_orig.sln
+// Open the sln in Visual Studio
+// Save it and close VS
+// Take the end part in blah.sln (that isn't in blah_orig.sln) and save that as sln_fix.txt
+
 stage ('Build Source SDK 2013') {
 	parallel "Linux": {
 		node ('linux') {
